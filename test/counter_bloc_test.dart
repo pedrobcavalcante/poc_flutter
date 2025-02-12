@@ -8,28 +8,28 @@ void main() {
       'Ao adicionar IncrementA, deve emitir CounterState(counterA: 1, counterB: 0)',
       build: () => CounterBloc(),
       act: (bloc) => bloc.add(IncrementA()),
-      expect: () => [CounterState(counterA: 1, counterB: 0)],
+      expect: () => [const CounterState(counterA: 1, counterB: 0)],
     );
 
     blocTest<CounterBloc, CounterState>(
       'Ao adicionar DecrementA, deve emitir CounterState(counterA: -1, counterB: 0)',
       build: () => CounterBloc(),
       act: (bloc) => bloc.add(DecrementA()),
-      expect: () => [CounterState(counterA: -1, counterB: 0)],
+      expect: () => [const CounterState(counterA: -1, counterB: 0)],
     );
 
     blocTest<CounterBloc, CounterState>(
       'Ao adicionar IncrementB, deve emitir CounterState(counterA: 0, counterB: 1)',
       build: () => CounterBloc(),
       act: (bloc) => bloc.add(IncrementB()),
-      expect: () => [CounterState(counterA: 0, counterB: 1)],
+      expect: () => [const CounterState(counterA: 0, counterB: 1)],
     );
 
     blocTest<CounterBloc, CounterState>(
       'Ao adicionar DecrementB com counterB = 0, deve permanecer em 0',
       build: () => CounterBloc(),
       act: (bloc) => bloc.add(DecrementB()),
-      expect: () => [CounterState(counterA: 0, counterB: 0)],
+      expect: () => [const CounterState(counterA: 0, counterB: 0)],
     );
 
     blocTest<CounterBloc, CounterState>(
@@ -41,9 +41,9 @@ void main() {
         bloc.add(DecrementB()); // counterB: 2 -> 1
       },
       expect: () => [
-        CounterState(counterA: 0, counterB: 1),
-        CounterState(counterA: 0, counterB: 2),
-        CounterState(counterA: 0, counterB: 1),
+        const CounterState(counterA: 0, counterB: 1),
+        const CounterState(counterA: 0, counterB: 2),
+        const CounterState(counterA: 0, counterB: 1),
       ],
     );
   });
