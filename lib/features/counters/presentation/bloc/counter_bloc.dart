@@ -1,3 +1,5 @@
+// lib/features/counters/presentation/bloc/counter_bloc.dart
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Eventos dos contadores
@@ -12,11 +14,14 @@ class IncrementB extends CounterEvent {}
 class DecrementB extends CounterEvent {}
 
 /// Estado que mantém os dois contadores
-class CounterState {
+class CounterState extends Equatable {
   final int counterA;
   final int counterB;
 
-  CounterState({required this.counterA, required this.counterB});
+  const CounterState({required this.counterA, required this.counterB});
+
+  @override
+  List<Object> get props => [counterA, counterB];
 
   CounterState copyWith({int? counterA, int? counterB}) {
     return CounterState(
@@ -28,7 +33,7 @@ class CounterState {
 
 /// BLoC que gerencia os eventos e estados dos contadores
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
-  CounterBloc() : super(CounterState(counterA: 0, counterB: 0)) {
+  CounterBloc() : super(const CounterState(counterA: 0, counterB: 0)) {
     on<IncrementA>((event, emit) {
       emit(state.copyWith(counterA: state.counterA + 1));
     });
