@@ -42,8 +42,11 @@ class BlocCounterScreen extends StatelessWidget {
                   const SizedBox(height: 40),
                   const Text('Counter B (não negativo):',
                       style: TextStyle(fontSize: 20)),
-                  Text('${state.counterB}',
-                      style: const TextStyle(fontSize: 36)),
+                  Text(
+                    '${state.counterB}',
+                    key: const Key('counterBText'),
+                    style: const TextStyle(fontSize: 36),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
