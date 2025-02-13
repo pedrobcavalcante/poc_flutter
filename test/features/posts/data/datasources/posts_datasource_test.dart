@@ -4,17 +4,24 @@ import 'package:dio/dio.dart';
 import 'package:poc_flutter/core/http/dio_client.dart';
 import 'package:poc_flutter/features/posts/data/datasources/posts_datasource.dart';
 
+class MockDio extends Mock implements Dio {}
 class MockDioClient extends Mock implements DioClient {
+  final Dio _dio;
+  
+  MockDioClient(this._dio);
+  
   @override
-  Dio get instance => Dio();
+  Dio get instance => _dio;
 }
 
 void main() {
   late PostsDatasourceImpl datasource;
   late MockDioClient mockDioClient;
+  late MockDio mockDio;
 
   setUp(() {
-    mockDioClient = MockDioClient();
+    mockDio = MockDio();
+    mockDioClient = MockDioClient(mockDio);
     datasource = PostsDatasourceImpl(mockDioClient);
   });
 
@@ -29,28 +36,30 @@ void main() {
         }
       ],
       statusCode: 200,
-      requestOptions: RequestOptions(path: ''),
+      requestOptions: RequestOptions(path: '/posts'),
     );
 
     test('should return list of posts when the call is successful', () async {
-      when(() => mockDioClient.instance.get('/posts')).thenAnswer((_) async => tResponse);
+      when(() => mockDio.get('/posts')).thenAnswer((_) async => tResponse);
 
       final result = await datasource.getPosts();
 
       expect(result.length, 1);
       expect(result.first.id, 1);
       expect(result.first.title, 'Test Title');
-      verify(() => mockDioClient.instance.get('/posts')).called(1);
+      verify(() => mockDio.get('/posts')).called(1);
     });
 
     test('should throw exception when the call fails', () async {
-      when(() => mockDioClient.instance.get('/posts')).thenThrow(DioException(
-        requestOptions: RequestOptions(path: ''),
-        error: 'Error',
-      ));
+      when(() => mockDio.get('/posts')).thenThrow(
+        DioException(
+          requestOptions: RequestOptions(path: '/posts'),
+          error: 'Error',
+        ),
+      );
 
       expect(() => datasource.getPosts(), throwsException);
-      verify(() => mockDioClient.instance.get('/posts')).called(1);
+      verify(() => mockDio.get('/posts')).called(1);
     });
   });
 
@@ -66,11 +75,11 @@ void main() {
         }
       ],
       statusCode: 200,
-      requestOptions: RequestOptions(path: ''),
+      requestOptions: RequestOptions(path: '/posts/1/comments'),
     );
 
     test('should return list of comments when the call is successful', () async {
-      when(() => mockDioClient.instance.get('/posts/1/comments'))
+      when(() => mockDio.get('/posts/1/comments'))
           .thenAnswer((_) async => tResponse);
 
       final result = await datasource.getPostComments(1);
@@ -78,17 +87,19 @@ void main() {
       expect(result.length, 1);
       expect(result.first.id, 1);
       expect(result.first.name, 'Test Name');
-      verify(() => mockDioClient.instance.get('/posts/1/comments')).called(1);
+      verify(() => mockDio.get('/posts/1/comments')).called(1);
     });
 
     test('should throw exception when the call fails', () async {
-      when(() => mockDioClient.instance.get('/posts/1/comments')).thenThrow(DioException(
-        requestOptions: RequestOptions(path: ''),
-        error: 'Error',
-      ));
+      when(() => mockDio.get('/posts/1/comments')).thenThrow(
+        DioException(
+          requestOptions: RequestOptions(path: '/posts/1/comments'),
+          error: 'Error',
+        ),
+      );
 
       expect(() => datasource.getPostComments(1), throwsException);
-      verify(() => mockDioClient.instance.get('/posts/1/comments')).called(1);
+      verify(() => mockDio.get('/posts/1/comments')).called(1);
     });
   });
 } 
