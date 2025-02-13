@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/counter_bloc.dart';
 
 class BlocCounterScreen extends StatelessWidget {
+  static const String route = '/bloc-counter';
   const BlocCounterScreen({super.key});
 
   @override

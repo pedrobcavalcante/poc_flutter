@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/counter_controller.dart';
 
 class GetXCounterScreen extends StatelessWidget {
+  static const String route = '/getx-counter';
   final CounterController controller = Get.put(CounterController());
 
   GetXCounterScreen({super.key});

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../streams/stream_counter_manager.dart';
 
 class StreamCounterScreen extends StatefulWidget {
+  static const String route = '/stream-counter';
   const StreamCounterScreen({super.key});
 
   @override
