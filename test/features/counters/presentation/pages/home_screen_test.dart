@@ -5,7 +5,7 @@ import 'package:poc_flutter/features/counters/presentation/pages/getx_counter_sc
 import 'package:poc_flutter/features/counters/presentation/pages/home_screen.dart';
 import 'package:poc_flutter/features/counters/presentation/pages/stream_counter_screen.dart';
 
-import 'package:poc_flutter/routes/app_pages.dart';
+import 'package:poc_flutter/routes/app_routes.dart';
 
 void main() {
   group('HomeScreen', () {
@@ -17,7 +17,7 @@ void main() {
       await tester.pumpWidget(
         GetMaterialApp(
           initialRoute: HomeScreen.route,
-          getPages: AppPages.pages,
+          getPages: AppRoutes.routes,
         ),
       );
 
@@ -31,7 +31,7 @@ void main() {
       await tester.pumpWidget(
         GetMaterialApp(
           initialRoute: HomeScreen.route,
-          getPages: AppPages.pages,
+          getPages: AppRoutes.routes,
         ),
       );
 
@@ -46,7 +46,7 @@ void main() {
       await tester.pumpWidget(
         GetMaterialApp(
           initialRoute: HomeScreen.route,
-          getPages: AppPages.pages,
+          getPages: AppRoutes.routes,
         ),
       );
 
@@ -61,7 +61,7 @@ void main() {
       await tester.pumpWidget(
         GetMaterialApp(
           initialRoute: HomeScreen.route,
-          getPages: AppPages.pages,
+          getPages: AppRoutes.routes,
         ),
       );
 
@@ -75,7 +75,7 @@ void main() {
       await tester.pumpWidget(
         GetMaterialApp(
           initialRoute: HomeScreen.route,
-          getPages: AppPages.pages,
+          getPages: AppRoutes.routes,
         ),
       );
 

@@ -9,8 +9,8 @@ import '../features/posts/presentation/controllers/posts_controller.dart';
 import '../features/posts/presentation/pages/post_details_page.dart';
 import '../features/posts/presentation/pages/posts_page.dart';
 
-abstract class AppPages {
-  static final pages = [
+abstract class AppRoutes {
+  static final routes = [
     GetPage(
       name: HomeScreen.route,
       page: () => const HomeScreen(),

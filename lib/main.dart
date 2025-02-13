@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'routes/app_pages.dart';
+import 'routes/app_routes.dart';
 import 'features/counters/presentation/pages/home_screen.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       initialRoute: HomeScreen.route,
-      getPages: AppPages.pages,
+      getPages: AppRoutes.routes,
       debugShowCheckedModeBanner: false,
     );
   }
